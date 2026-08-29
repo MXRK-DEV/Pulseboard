@@ -1,0 +1,34 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Monitor {
+  id              Int        @id @default(autoincrement())
+  name            String
+  url             String
+  intervalSeconds Int        @default(30) @map("interval_seconds")
+  status          String     @default("UNKNOWN")
+  lastCheck       DateTime?  @map("last_check")
+  lastLatencyMs   Int?       @map("last_latency_ms")
+  createdAt       DateTime   @default(now()) @map("created_at")
+  checkLogs       CheckLog[]
+
+  @@map("monitors")
+}
+
+model CheckLog {
+  id         Int      @id @default(autoincrement())
+  monitorId  Int      @map("monitor_id")
+  statusCode Int?     @map("status_code")
+  latencyMs  Int?     @map("latency_ms")
+  isUp       Boolean  @map("is_up")
+  checkedAt  DateTime @default(now()) @map("checked_at")
+  monitor    Monitor  @relation(fields: [monitorId], references: [id], onDelete: Cascade)
+
+  @@map("check_logs")
+}

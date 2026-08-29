@@ -1,0 +1,25 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: pulseboard-cluster
+  region: us-east-1
+  version: "1.32"
+
+vpc:
+  cidr: 10.0.0.0/16
+  nat:
+    gateway: Single # Uses 1 NAT Gateway instead of 2 to save costs
+
+iam:
+  withOIDC: true
+
+managedNodeGroups:
+  - name: pulseboard-nodes
+    instanceType: t3.small
+    minSize: 2
+    maxSize: 3
+    desiredCapacity: 2
+    privateNetworking: true
+    labels:
+      role: worker
