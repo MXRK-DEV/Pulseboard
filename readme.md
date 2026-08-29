@@ -35,7 +35,7 @@ flowchart TD
 
 ## Tech Stack
 
-- **Languages:** JavaScript, TypeScript, Golang (if applicable)
+- **Languages:** JavaScript, TypeScript
 - **Frameworks:** React, Next.js, Express, Tailwind CSS
 - **DevOps:** Docker, Kubernetes (`kubectl`), AWS EKS, ECR, IAM, Route 53
 - **Database & ORM:** PostgreSQL, Prisma
