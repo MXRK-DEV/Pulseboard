@@ -14,6 +14,25 @@ Built with a containerized microservices architecture, PulseBoard is designed to
 - **Infrastructure:** Amazon EKS (Kubernetes), Amazon ECR, AWS Route 53, Ingress Controllers
 - **Secrets Management:** External Secrets Operator connecting directly to AWS Secrets Manager
 
+### Architecture Diagram
+
+```mermaid
+flowchart TD
+    A[Public internet] --> B[Route 53 - DNS]
+    B --> C[AWS Application Load Balancer - ACM TLS]
+    C --> D
+
+    subgraph D[Amazon EKS Cluster - VPC]
+        E[Ingress Controller - ALB, path routing]
+        E --> F[Frontend Pods - React + Nginx x2]
+        E --> G[Backend Pods - Node/Express x2]
+        H[External Secrets Operator]
+    end
+
+    G --> I[(Amazon RDS PostgreSQL - private subnet)]
+    J[AWS Secrets Manager - DB creds, JWT key] --> H
+```
+
 ## Tech Stack
 
 - **Languages:** JavaScript, TypeScript, Golang (if applicable)
