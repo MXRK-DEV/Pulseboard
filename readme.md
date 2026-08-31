@@ -4,6 +4,8 @@ PulseBoard is a full-stack, real-time metrics and application monitoring dashboa
 
 Built with a containerized microservices architecture, PulseBoard is designed to be cloud-native, highly available, and scalable from day one.
 
+> **Want this deployed automatically instead of following the manual steps below?** See [`createpulse`](https://github.com/MXRK-DEV/createpulse) and [`destroypulse`](https://github.com/MXRK-DEV/destroypulse), also pinned on my GitHub — they automate this entire build-out and teardown end to end.
+
 ---
 
 ## System Architecture
