@@ -66,3 +66,6 @@ kubeconfig
 .aws/
 aws_credentials
 credentials.csv
+
+
+iam_policy.json
